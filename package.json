@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "name": "c2c",
+  "private": true,
+  "scripts": {
+    "start": "set NODE_ENV=development && node_modules\\.bin\\gulp dev",
+    "build": "set NODE_ENV=production && node_modules\\.bin\\gulp build"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.26.0",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-if": "^2.0.2",
+    "gulp-image": "^4.3.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp.spritesmith": "^6.9.0",
+    "merge-stream": "^1.0.1",
+    "node-normalize-scss": "^8.0.0",
+    "node-sass": "^4.9.3",
+    "node-sass-import-once": "^1.2.0",
+    "pngquant-bin": "^5.0.0",
+    "postcss-preset-env": "^5.3.0",
+    "webpack-stream": "^5.1.1",
+    "zopflipng-bin": "^4.1.0"
+  },
+  "dependencies": {
+    "static-eval": "^2.0.0"
+  }
+}
