@@ -1,4 +1,11 @@
-@import "includes/variables";
-@import "includes/mixins";
+@import "includes/_variables";
+@import "includes/_mixins";
 @import "includes/fonts";
-@import "includes/index";
+
+* {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}

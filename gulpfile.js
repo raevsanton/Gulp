@@ -1,13 +1,10 @@
 ﻿const gulp = require('gulp');
 const sass = require('gulp-sass');
 const gulpIf = require('gulp-if');
-const sourcemaps = require('gulp-sourcemaps');
 const postcss = require('gulp-postcss');
 const postcssPresetEnv = require('postcss-preset-env');
 const importOnce = require('node-sass-import-once');
 const image = require('gulp-image');
-const merge = require('merge-stream');
-const webpack = require('webpack-stream');
 const del = require('del');
 const browserSync = require('browser-sync').create();
 const pug = require('gulp-pug');
@@ -21,7 +18,6 @@ gulp.task('clean', function() {
 gulp.task('sass', function() {
 	return gulp
 		.src('assets/sass/**/*.scss')
-		.pipe(gulpIf(isDevelopment, sourcemaps.init()))
 		.pipe(
 			sass({
 				importer: importOnce,
@@ -38,52 +34,12 @@ gulp.task('sass', function() {
 				])
 			)
 		)
-		.pipe(gulpIf(isDevelopment, sourcemaps.write()))
 		.pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('js', function() {
-	const jsConfig = {
-		test: /\.js$/,
-		exclude: /(node_modules)/,
-		loader: 'babel-loader',
-		query: {
-			presets: [
-				[
-					'env',
-					{
-						targets: {
-							// The % refers to the global coverage of users from browserslist
-							browsers: ['last 2 versions', 'not ie <= 10'],
-						},
-					},
-				],
-			],
-		},
-	};
-	const config = isDevelopment
-		? {
-				mode: 'development',
-				module: {
-					rules: [jsConfig],
-				},
-				devtool: 'source-map',
-				output: {
-					filename: 'index.js',
-				},
-		  }
-		: {
-				mode: 'production',
-				module: {
-					rules: [jsConfig],
-				},
-				output: {
-					filename: 'index.js',
-				},
-		  };
 	return gulp
 		.src('assets/js/*.js')
-		.pipe(webpack(config))
 		.pipe(gulp.dest('dist/js'));
 });
 
@@ -138,6 +94,4 @@ gulp.task('server', function() {
 gulp.task('dev', gulp.series('build', gulp.parallel('watch', 'server'))
 );
 
-gulp.task('default', function() {
-	// place code for your default task here
-});
+gulp.task('default', function() {});
